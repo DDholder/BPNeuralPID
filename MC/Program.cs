@@ -1,13 +1,33 @@
 ﻿using System;
+using System.Collections;
 using Mci.Logging;
 using Mci.MatrixLibrary;
 using Mci.ControlLibrary;
+using Mci.OPCClient;
 namespace MC
 {
     class Program
     {
         static void Main(string[] args)
         {
+            var svr = Client.Instance();
+            var arr = svr.GetOPCServerList();
+            if (arr != null)
+            {
+                foreach (var s in arr)
+                {
+                    s.ToConsole();
+                }
+            }
+            svr.Connect("Kepware.KEPServerEX.V5").ToString().ToConsole("Connect status");
+            var list = svr.GetTags();
+            if (list != null)
+            {
+                foreach (var o in list)
+                {
+                    o.ToConsole();
+                }
+            }
             var m1 = Matrix.Instance(4, 4).InitMatrix(0.01);
             var m2 = Matrix.Instance(4, 1).InitMatrix(1);
             m1.ToString().ToConsole("m1 " + m1.Dim.ToString());
@@ -28,7 +48,6 @@ namespace MC
                 }
                 runCount = 0;
                 var cmd = "Reader << ".ConsoleReader().ToLower();
-
                 #region 命令行
                 switch (cmd)
                 {
@@ -101,7 +120,6 @@ namespace MC
                         break;
                 }
                 #endregion
-
             }
 
         _end:

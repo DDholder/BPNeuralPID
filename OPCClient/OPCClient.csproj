@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C332703-0922-4FF1-B7F3-56D6F0DCDFE7}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{1DA158A3-3E5D-4CBC-BF4D-A76D440E1878}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MC</RootNamespace>
-    <AssemblyName>MC</AssemblyName>
+    <RootNamespace>Mci.OPCClient</RootNamespace>
+    <AssemblyName>OPCClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,28 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <COMReference Include="OPCAutomation">
+      <Guid>{28E68F91-8D75-11D1-8DC3-3C302A000000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ControlLibrary\ControlLibrary.csproj">
-      <Project>{4054e9e8-915d-44b1-ad93-90bf9da85b9f}</Project>
-      <Name>ControlLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logging\Logging.csproj">
       <Project>{e1a954da-d52f-4477-adad-0cc92625b610}</Project>
       <Name>Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Matrix\Matrix.csproj">
-      <Project>{3a6bcf2b-0b59-4abd-8b5a-309eb3e9e1da}</Project>
-      <Name>Matrix</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OPCClient\OPCClient.csproj">
-      <Project>{1da158a3-3e5d-4cbc-bf4d-a76d440e1878}</Project>
-      <Name>OPCClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

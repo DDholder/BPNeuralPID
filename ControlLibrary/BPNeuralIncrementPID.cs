@@ -152,7 +152,7 @@ namespace Mci.ControlLibrary
         public void HideLevelWeight()
         {
             IHLWeight = Matrix.Transport(Matrix.Instance(new double[,] {
-              {-0.2857,0.6536,-1.3780,-0.5275 },
+              {-0.2857,0.6536,-1.3780,-0.5275},
               {-0.2415,0.1331,1.0813,1.2065 },
               {-0.1081,-0.5632,1.7430,0.6511 },
               {0.9828,-0.2190,1.1532,-0.4335},

@@ -25,7 +25,7 @@ namespace Mci.Logging
     {
         static ILogging fileLogging;
         static ILogging consoleLogging;
-        private static string loggingFileName = string.Empty;
+        private static string loggingFileName;
         public static void ToFile(this string s)
         {
             LazyInitializer.EnsureInitialized<ILogging>(ref fileLogging, CreateFileLogInstance);
@@ -63,7 +63,7 @@ namespace Mci.Logging
                 fileRealPath = Directory.GetCurrentDirectory();
             if (!fileRealPath.EndsWith(@"\"))
                 fileRealPath += @"\";
-            fileRealPath += loggingFileName;
+            fileRealPath += FileName;
             var fs = new FileStream(fileRealPath, FileMode.OpenOrCreate | FileMode.Append, FileAccess.Write);
             return LoggingFactory.FileLog(fs);
         }
@@ -77,6 +77,10 @@ namespace Mci.Logging
             }
             get
             {
+                if (string.IsNullOrWhiteSpace(loggingFileName))
+                {
+                    return "log.txt";
+                }
                 return loggingFileName;
             }
         }
