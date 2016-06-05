@@ -15,6 +15,10 @@ namespace Mci.OPCClient
         bool isDisapose = false;
         bool isConnected = false;
 
+        /// <summary>
+        /// opc 客户端实例
+        /// </summary>
+        /// <returns></returns>
         public static Client Instance()
         {
             return new Client();
@@ -25,6 +29,12 @@ namespace Mci.OPCClient
             _server = CreateSelf();
         }
 
+        /// <summary>
+        /// 连接OPC Server
+        /// </summary>
+        /// <param name="proId"></param>
+        /// <param name="nodeName"></param>
+        /// <returns></returns>
         public bool Connect(string proId, string nodeName = null)
         {
             if (_server != null)
@@ -50,6 +60,11 @@ namespace Mci.OPCClient
             }
             return isConnected;
         }
+
+        /// <summary>
+        /// 获取变量
+        /// </summary>
+        /// <returns></returns>
         public IList<string> GetTags()
         {
             if (!isConnected)
@@ -79,7 +94,7 @@ namespace Mci.OPCClient
         }
 
         /// <summary>
-        /// 获取变量列表
+        /// 获取OPC服务列表
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
@@ -108,7 +123,7 @@ namespace Mci.OPCClient
         }
 
         /// <summary>
-        /// 获取变量列表
+        /// 获取OPC服务列表
         /// </summary>
         /// <returns></returns>
         public IList<string> GetOPCServerList()
